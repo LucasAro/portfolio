@@ -1,0 +1,13 @@
+services:
+  react:
+    build:
+      context: ./contact-react
+    container_name: contact-react
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./contact-react:/app
+      - /app/node_modules # Isso impede que a pasta node_modules do host sobrescreva a do contêiner
+    stdin_open: true
+    tty: true
+    command: npm start
