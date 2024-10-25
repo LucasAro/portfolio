@@ -30,7 +30,7 @@ function App()
 
 		try
 		{
-			const response = await fetch( 'http://localhost:4000/messages', {
+			const response = await fetch( 'https://contact-api2-frosty-sunset-7890.fly.dev/messages', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
