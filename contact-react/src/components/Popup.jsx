@@ -20,7 +20,7 @@ function Popup( { show, onClose, title, content } )
 			aria-labelledby="popup-title"
 			aria-describedby="popup-content"
 		>
-			<div className="popup-content bg-white text-gray-800 p-8 rounded-xl relative shadow-2xl border-4 border-blue-500 max-w-lg w-full">
+			<div className="popup-content bg-white text-gray-800 p-8 rounded-xl relative shadow-2xl border-4 border-blue-500 max-w-lg w-[90%]">
 				<button
 					onClick={onClose}
 					className="absolute top-4 right-4 text-blue-500 text-3xl font-bold hover:text-blue-700 transition-colors"

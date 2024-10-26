@@ -3,7 +3,7 @@ import React from 'react';
 function Contato( { formData, handleInputChange, handleSubmit } )
 {
 	return (
-		<section id="contato" className="container mx-auto px-4 my-8 bg-white p-6 rounded-lg shadow-md border-2 border-blue-500">
+		<section id="contato" className="container w-[90%] mx-auto px-4 my-8 bg-white p-6 rounded-lg shadow-md border-2 border-blue-500">
 			<h2 className="text-3xl font-bold mb-4 text-blue-600">Contato</h2>
 			<p className="mb-6">Gostou do meu trabalho? Vamos conversar!</p>
 			<form onSubmit={handleSubmit}>

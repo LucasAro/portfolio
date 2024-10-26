@@ -89,15 +89,19 @@ function App()
 		},
 	];
 
-	const scrollToSection = ( id ) =>
-	{
-		const section = document.querySelector( id );
-		if ( section )
-		{
-			section.scrollIntoView( { behavior: 'smooth' } );
+	const scrollToSection = (id) => {
+		const section = document.querySelector(id);
+		if (section) {
+			// Calcula a posição da seção menos o offset de 30px
+			const offsetPosition = section.getBoundingClientRect().top + window.scrollY - 98;
+
+			// Realiza o scroll suave até a posição ajustada
+			window.scrollTo({
+				top: offsetPosition,
+				behavior: 'smooth',
+			});
 		}
 	};
-
 
 	return (
 		<div>
@@ -105,7 +109,7 @@ function App()
 			<div className={`transition-all duration-300 ${showPopup ? 'blur-sm' : ''}`}>
 				<Header scrollToSection={scrollToSection} />
 
-				<HeroSection />
+				<HeroSection scrollToSection={scrollToSection}/>
 
 				<Sobre />
 

@@ -3,7 +3,7 @@ import React from 'react';
 function Projetos( { projects, togglePopup } )
 {
 	return (
-		<section id="projetos" className="container mx-auto px-4 my-8">
+		<section id="projetos" className="container w-[90%] mx-auto my-8">
 			<h2 className="text-3xl font-bold mb-4 text-blue-600">Projetos</h2>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 				{projects.map( ( project, index ) => (
