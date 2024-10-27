@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 import './styles.css';
-import { FaReact, FaNodeJs, FaAws, FaDatabase, FaDocker, FaPython, FaPhp, FaShieldAlt, FaTerminal, FaMicrochip } from 'react-icons/fa';
-import { SiNestjs, SiCypress, SiJest, SiLinux, SiReact } from 'react-icons/si';
-import { FaFigma, FaHtml5 } from 'react-icons/fa';
-import { SiTypescript, SiTailwindcss, SiSocketdotio } from 'react-icons/si';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import Sobre from './components/Sobre';
@@ -17,6 +13,7 @@ function App()
 	const [showPopup, setShowPopup] = useState( false );
 	const [popupContent, setPopupContent] = useState( { title: '', description: '' } );
 	const [formData, setFormData] = useState( { name: '', email: '', message: '' } );
+	const [isLoading, setIsLoading] = useState(false); // Adiciona o estado de carregamento
 
 	const togglePopup = ( content ) =>
 	{
@@ -24,44 +21,41 @@ function App()
 		setPopupContent( content || { title: '', description: '' } );
 	};
 
-	const handleFormSubmit = async ( e ) =>
-	{
+	const handleFormSubmit = async (e) => {
 		e.preventDefault();
+		setIsLoading(true); // Ativa o estado de carregamento
 
-		try
-		{
-			const response = await fetch( 'https://contact-api2-frosty-sunset-7890.fly.dev/messages', {
+		try {
+			const response = await fetch('https://contact-api2-frosty-sunset-7890.fly.dev/messages', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify( formData ),
-			} );
+				body: JSON.stringify(formData),
+			});
 
-			if ( response.ok )
-			{
-				setPopupContent( {
+			if (response.ok) {
+				setPopupContent({
 					title: 'Mensagem Enviada!',
 					description: `Obrigado pelo contato, ${formData.name}! Sua mensagem foi recebida.`,
-				} );
-			} else
-			{
-				setPopupContent( {
+				});
+			} else {
+				setPopupContent({
 					title: 'Erro ao Enviar',
 					description: 'Ocorreu um erro ao enviar sua mensagem. Tente novamente mais tarde.',
-				} );
+				});
 			}
-		} catch ( error )
-		{
-			console.error( 'Erro:', error );
-			setPopupContent( {
+		} catch (error) {
+			console.error('Erro:', error);
+			setPopupContent({
 				title: 'Erro ao Enviar',
 				description: 'Erro ao enviar a mensagem. Tente novamente mais tarde.',
-			} );
+			});
 		}
 
-		setShowPopup( true ); // Mostrar o popup com o resultado do envio
-		setFormData( { name: '', email: '', message: '' } ); // Limpar o formulário
+		setShowPopup(true); // Mostrar o popup com o resultado do envio
+		setFormData({ name: '', email: '', message: '' }); // Limpar o formulário
+		setIsLoading(false); // Desativa o estado de carregamento
 	};
 
 	const handleInputChange = ( e ) =>
@@ -72,8 +66,9 @@ function App()
 
 	const projects = [
 		{
-			title: 'Sistema de Gestão de Tarefas para Equipes',
-			description: 'Um sistema completo para gestão de tarefas em equipes, com funcionalidades de criação, atribuição, monitoramento e conclusão de tarefas. Desenvolvido com React no front-end e NestJS no back-end, incluindo autenticação de usuários e notificações em tempo real com WebSockets.',
+			title: 'To-Do List em Rust',
+			description: 'Este é um projeto de estudo, uma aplicação de lista de tarefas criada em Rust. Ele permite que você crie, liste, marque como concluída e apague tarefas. As tarefas são armazenadas remotamente em jsonbin.io.',
+			repository: 'https://github.com/LucasAro/todolist-rust.git',
 		},
 		{
 			title: 'Dashboard de Monitoramento em Tempo Real',
@@ -115,7 +110,12 @@ function App()
 
 				<Projetos projects={projects} togglePopup={togglePopup} />
 
-				<Contato formData={formData} handleInputChange={handleInputChange} handleSubmit={handleFormSubmit} />
+				<Contato
+					formData={formData}
+					handleInputChange={handleInputChange}
+					handleSubmit={handleFormSubmit}
+					isLoading={isLoading} // Passa o estado de carregamento para o componente Contato
+				/>
 
 				<Footer />
 			</div>
@@ -127,6 +127,7 @@ function App()
 					onClose={() => setShowPopup( false )}
 					title={popupContent.title}
 					content={popupContent.description}
+					repository={popupContent.repository}
 				/>
 			)}
 		</div>

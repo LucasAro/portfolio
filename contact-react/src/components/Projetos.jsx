@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaGithub } from 'react-icons/fa';
 
 function Projetos( { projects, togglePopup } )
 {
@@ -14,6 +15,19 @@ function Projetos( { projects, togglePopup } )
 					>
 						<h3 className="text-xl font-bold mb-2 text-blue-600">{project.title}</h3>
 						<p>{project.description.substring( 0, 60 )}...</p>
+						{project.repository && (
+							<p className='hover:text-blue-600 text-blue-500 text-xl mt-5'>
+								<a
+									href={project.repository}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="flex items-center no-underline"
+								>
+									<FaGithub size={20} className="mr-1" />
+									Repositório do Projeto
+								</a>
+							</p>
+						)}
 					</div>
 				) )}
 			</div>

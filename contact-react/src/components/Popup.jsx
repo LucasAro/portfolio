@@ -1,6 +1,7 @@
 import React from 'react';
+import { FaGithub } from 'react-icons/fa';
 
-function Popup( { show, onClose, title, content } )
+function Popup( { show, onClose, title, content, repository = null } )
 {
 	if ( !show ) return null;
 
@@ -14,7 +15,7 @@ function Popup( { show, onClose, title, content } )
 
 	return (
 		<div
-			className="popup fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50"
+			className="popup fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
 			onClick={handleClose}
 			role="dialog"
 			aria-labelledby="popup-title"
@@ -30,6 +31,19 @@ function Popup( { show, onClose, title, content } )
 				</button>
 				<h3 id="popup-title" className="text-3xl font-bold mb-6 text-blue-600">{title}</h3>
 				<p id="popup-content" className="text-lg">{content}</p>
+				{repository && (
+					<p className='hover:text-blue-600 text-blue-500 text-xl mt-5'>
+						<a
+							href={repository}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="flex items-center no-underline"
+						>
+							<FaGithub size={20} className="mr-1" />
+							Repositório do Projeto
+						</a>
+					</p>
+				)}
 			</div>
 		</div>
 	);
