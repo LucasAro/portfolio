@@ -34,7 +34,7 @@ function HeroSection({ scrollToSection }) {
             Veja Meus Projetos
           </a>
           <a
-            href="../../Curriculo_LucasRodrigues.pdf"
+            href="Curriculo_LucasRodrigues.pdf"
             download
             className="bg-green-700 hover:bg-green-800 text-white py-3 px-8 rounded-full shadow-lg transform transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-green-500/30 cursor-pointer animate-pulse delay-150"
           >

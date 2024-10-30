@@ -78,17 +78,13 @@ function App()
 			setProjects(savedData.projects);
 		} else
 		{
-			fetch(`https://api.github.com/users/${username}/repos`, {
-			headers: { Authorization: `token ${token}` },
-			})
+			fetch(`https://api.github.com/users/${username}/repos`)
 			.then(response => response.json())
 			.then(async data => {
 				const reposWithReadme = await Promise.all(
 				data.map(async repo => {
 					const readmeResponse = await fetch(
-					`https://api.github.com/repos/${username}/${repo.name}/readme`,
-					{ headers: { Authorization: `token ${token}`  } }
-					);
+					`https://api.github.com/repos/${username}/${repo.name}/readme`);
 					if (readmeResponse.ok) {
 						const readmeData = await readmeResponse.json();
 						const content = decodeBase64(readmeData.content);
