@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './styles.css';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
@@ -13,7 +13,8 @@ function App()
 	const [showPopup, setShowPopup] = useState( false );
 	const [popupContent, setPopupContent] = useState( { title: '', description: '' } );
 	const [formData, setFormData] = useState( { name: '', email: '', message: '' } );
-	const [isLoading, setIsLoading] = useState(false); // Adiciona o estado de carregamento
+	const [isLoading, setIsLoading] = useState( false );
+	const [projects, setProjects] = useState([]);
 
 	const togglePopup = ( content ) =>
 	{
@@ -64,39 +65,80 @@ function App()
 		setFormData( { ...formData, [name]: value } );
 	};
 
-	const projects = [
+
+	useEffect(() => {
+		const username = 'lucasaro';
+		const localStorageKey = 'github_projects_data';
+		const today = new Date().toISOString().split('T')[0];
+		const token = process.env.REACT_APP_GITHUB_TOKEN;
+
+		const savedData = JSON.parse(localStorage.getItem(localStorageKey));
+
+		if (savedData && savedData.date === today) {
+			setProjects(savedData.projects);
+		} else
 		{
-			title: 'To-Do List em Rust',
-			description: 'Este é um projeto de estudo, uma aplicação de lista de tarefas criada em Rust. Ele permite que você crie, liste, marque como concluída e apague tarefas. As tarefas são armazenadas remotamente em jsonbin.io.',
-			repository: 'https://github.com/LucasAro/todolist-rust.git',
-		},
-		{
-			title: 'Dashboard de Monitoramento em Tempo Real',
-			description: 'Uma aplicação de dashboard para monitoramento em tempo real de métricas de sistema, como uso de CPU, memória e status de serviços. Desenvolvido com React e Chart.js, com integração via API REST feita em Node.js e banco de dados MongoDB.',
-		},
-		{
-			title: 'E-commerce com Pagamentos e Carrinho de Compras',
-			description: 'Uma aplicação de e-commerce completa, com funcionalidades de catálogo de produtos, carrinho de compras e integração com gateway de pagamento. Utilizei React e Redux no front-end, Node.js com NestJS no back-end, e banco de dados MySQL para gerenciar os produtos e pedidos.',
-		},
-		{
-			title: 'Plataforma de Blog com Editor Rich Text',
-			description: 'Desenvolvimento de uma plataforma de blog que permite aos usuários criar e editar posts utilizando um editor rich text. Implementado com React, Node.js e MongoDB.',
-		},
-	];
+			fetch(`https://api.github.com/users/${username}/repos`, {
+			headers: { Authorization: `token ${token}` },
+			})
+			.then(response => response.json())
+			.then(async data => {
+				const reposWithReadme = await Promise.all(
+				data.map(async repo => {
+					const readmeResponse = await fetch(
+					`https://api.github.com/repos/${username}/${repo.name}/readme`,
+					{ headers: { Authorization: `token ${token}`  } }
+					);
+					if (readmeResponse.ok) {
+						const readmeData = await readmeResponse.json();
+						const content = decodeBase64(readmeData.content);
+						const firstParagraph = content.split('\n\n')[1];
+						return {
+							title: repo.name,
+							description: firstParagraph,
+							repository: repo.html_url,
+						};
+					} else {
+						return null;
+					}
+				})
+				);
+
+				const filteredProjects = reposWithReadme.filter(project => project !== null);
+
+				setProjects(filteredProjects);
+				localStorage.setItem(
+				localStorageKey,
+				JSON.stringify({ date: today, projects: filteredProjects })
+				);
+			})
+			.catch(error => console.error('Erro ao buscar os repositórios:', error));
+		}
+	}, []);
+
 
 	const scrollToSection = (id) => {
 		const section = document.querySelector(id);
 		if (section) {
-			// Calcula a posição da seção menos o offset de 30px
 			const offsetPosition = section.getBoundingClientRect().top + window.scrollY - 98;
 
-			// Realiza o scroll suave até a posição ajustada
 			window.scrollTo({
 				top: offsetPosition,
 				behavior: 'smooth',
 			});
 		}
 	};
+
+	function decodeBase64(base64) {
+		const binaryString = window.atob(base64.replace(/\n/g, ''));
+		const len = binaryString.length;
+		const bytes = new Uint8Array(len);
+		for (let i = 0; i < len; i++) {
+		bytes[i] = binaryString.charCodeAt(i);
+		}
+		const decoder = new TextDecoder('utf-8');
+		return decoder.decode(bytes);
+	}
 
 	return (
 		<div>

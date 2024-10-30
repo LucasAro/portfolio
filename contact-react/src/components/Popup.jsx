@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaGithub } from 'react-icons/fa';
+import ReactMarkdown from 'react-markdown';
 
 function Popup( { show, onClose, title, content, repository = null } )
 {
@@ -30,7 +31,8 @@ function Popup( { show, onClose, title, content, repository = null } )
 					&times;
 				</button>
 				<h3 id="popup-title" className="text-3xl font-bold mb-6 text-blue-600">{title}</h3>
-				<p id="popup-content" className="text-lg">{content}</p>
+
+				<p id="popup-content" className="text-lg">{<ReactMarkdown>{content}</ReactMarkdown>}</p>
 				{repository && (
 					<p className='hover:text-blue-600 text-blue-500 text-xl mt-5'>
 						<a
