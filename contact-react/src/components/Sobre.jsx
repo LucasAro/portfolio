@@ -46,8 +46,48 @@ function Sobre() {
       </div>
       {/* Timeline component remains unchanged */}
       <VerticalTimeline className="mt-12">
-        {/* Timeline elements */}
-      </VerticalTimeline>
+				<VerticalTimelineElement
+					className="vertical-timeline-element--work"
+					date="2024 - Atualmente"
+					iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+				>
+					<h3 className="vertical-timeline-element-title">Wide Digital - Desenvolvedor Full-Stack Pleno</h3>
+					<p className="text-justify relative pl-6 before:content-['•'] before:absolute before:left-0 before:text-blue-600 before:text-xl">
+					Implementei testes automatizados de front-end e back-end utilizando Cypress, Jest e Postman. Isso facilitou o processo de validação que até então era realizado manualmente, aumentando a eficiência e a confiabilidade no desenvolvimento.
+					</p>
+					<p className="text-justify relative pl-6 before:content-['•'] before:absolute before:left-0 before:text-blue-600 before:text-xl">
+						Desenvolvi um sistema web para envio e gestão de fotos e vídeos voltado para Digital Signage, com foco em dispositivos móveis (Android e iOS), garantindo responsividade tanto para mobile quanto para desktop. A plataforma permite aos usuários editar imagens (cortar, redimensionar) e enviá-las para exibição em TVs corporativas, facilitando a interação entre usuários e dispositivos de exibição, otimizando a comunicação visual nas empresas.
+					</p>
+
+				</VerticalTimelineElement>
+				<VerticalTimelineElement
+					className="vertical-timeline-element--work"
+					date="2023 - 2024"
+					iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+				>
+					<h3 className="vertical-timeline-element-title">Wide Digital - Desenvolvedor Full-Stack Junior</h3>
+					<p class="relative pl-6 text-justify before:content-['•'] before:absolute before:left-0 before:text-blue-600 before:text-xl">
+						Desenvolvi funcionalidades de login seguro com autenticação de dois fatores, integrações de notificações em tempo real com WebSockets, e otimizei o tempo de carregamento das páginas web em 30%.
+					</p>
+					<p class="relative text-justify pl-6 before:content-['•'] before:absolute before:left-0 before:text-blue-600 before:text-xl">
+					Fui responsável pela criação de relatórios dinâmicos para visualização e análise de dados, utilizando stored procedures para otimizar a extração de informações do banco de dados MySQL. Desenvolvi interfaces de apresentação dos relatórios empregando PHP e JavaScript. Meu trabalho envolveu a integração eficiente entre backend e frontend, garantindo alta performance, segurança e uma experiência de usuário aprimorada.
+					</p>
+
+				</VerticalTimelineElement>
+				<VerticalTimelineElement
+					className="vertical-timeline-element--work"
+					date="2022 - 2023"
+					iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+				>
+					<h3 className="vertical-timeline-element-title">Wide Digital - Desenvolvedor Full-Stack Trainee</h3>
+					<p className="text-justify relative pl-6 before:content-['•'] before:absolute before:left-0 before:text-blue-600 before:text-xl">
+						Desenvolvi um mapa interativo usando OpenStreetMap e Leaflet para obter informações dos players em tempo real, utilizando APIs REST e JavaScript. Usei os endereços dos Players na base de dados para criar marcadores interativos que mostravam o status de online e offline, e implementei uma funcionalidade que gerava rotas entre os players com base na menor distância, facilitando o suporte técnico em visitas e diminuindo o tempo de deslocamento. A lógica matemática aplicada envolveu o cálculo de distâncias geodésicas entre coordenadas geográficas.
+					</p>
+					<p className="text-justify relative pl-6 before:content-['•'] before:absolute before:left-0 before:text-blue-600 before:text-xl">
+					Desenvolvi e implementei uma nova funcionalidade de login seguro com autenticação de dois fatores (2FA), aumentando a segurança da plataforma.
+					</p>
+				</VerticalTimelineElement>
+			</VerticalTimeline>
     </section>
   );
 }
