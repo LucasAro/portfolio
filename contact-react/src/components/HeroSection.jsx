@@ -10,7 +10,7 @@ function HeroSection({ scrollToSection }) {
   return (
     <section
       id="hero"
-      className={`bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 text-white py-32 text-center rounded-lg mx-auto my-24 w-[90%] shadow-2xl hover:shadow-cyan-500/50 transition-shadow duration-300 ease-in-out ${
+      className={`bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 text-white py-24 text-center rounded-lg mx-auto my-24 w-[90%] shadow-2xl hover:shadow-cyan-500/50 transition-shadow duration-300 ease-in-out ${
         isVisible ? 'animate-fadeIn' : 'opacity-0'
       }`}
     >
@@ -19,12 +19,7 @@ function HeroSection({ scrollToSection }) {
           Olá, sou Lucas Rodrigues
         </h2>
         <p className="mb-8 text-lg text-justify leading-relaxed animate-slideUp delay-100">
-          Desenvolvedor Full-Stack com experiência em desenvolvimento de
-          aplicações web e sistemas distribuídos usando tecnologias como AWS,
-          HTML5, CSS3, JavaScript (JS), PHP, Laravel, NextJs, NestJs, Python,
-          MySQL, React, Node.js e Expo. Atualmente cursando Ciências da
-          Computação (6º período), com experiência em microserviços e segurança
-          de sistemas.
+          Desenvolvedor Full-Stack Pleno com ampla experiência no desenvolvimento de aplicações web e sistemas distribuídos. Possuo expertise em arquitetura de microserviços, segurança de sistemas e integração contínua (CI/CD). Sou apaixonado por inovação tecnológica, sempre me dedicando a aprender novas linguagens, frameworks e ferramentas para otimizar processos e criar soluções escaláveis.
         </p>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 animate-slideUp delay-200">
           <a
