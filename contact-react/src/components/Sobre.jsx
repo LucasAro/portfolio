@@ -1,13 +1,12 @@
 import React from 'react';
 import { FaReact, FaNodeJs, FaAws, FaDatabase, FaDocker, FaPython, FaPhp, FaShieldAlt, FaTerminal, FaMicrochip } from 'react-icons/fa';
-import { SiNestjs, SiCypress, SiJest, SiLinux, SiReact, SiTypescript, SiTailwindcss, SiSocketdotio } from 'react-icons/si';
+import { SiNestjs, SiCypress, SiJest, SiLinux, SiReact, SiTypescript, SiTailwindcss, SiSocketdotio, SiTensorflow, SiPytorch, SiKeras, SiScikitlearn  } from 'react-icons/si';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 
 function Sobre() {
   const skills = [
     { icon: <FaReact className="text-5xl text-blue-500" />, name: 'React' },
-    { icon: <SiReact className="text-5xl text-cyan-500" />, name: 'React Native' },
     { icon: <FaNodeJs className="text-5xl text-green-600" />, name: 'Node.js' },
     { icon: <SiNestjs className="text-5xl text-red-500" />, name: 'NestJS' },
     { icon: <FaAws className="text-5xl text-yellow-500" />, name: 'AWS' },
@@ -23,8 +22,10 @@ function Sobre() {
     { icon: <SiTypescript className="text-5xl text-blue-500" />, name: 'TypeScript' },
     { icon: <SiTailwindcss className="text-5xl text-teal-500" />, name: 'Tailwind CSS' },
     { icon: <SiSocketdotio className="text-5xl text-gray-600" />, name: 'WebSockets' },
-    { icon: <FaShieldAlt className="text-5xl text-red-500" />, name: 'Machine Learning' },
-    { icon: <FaShieldAlt className="text-5xl text-red-500" />, name: 'Visão Computacional' },
+    { icon: <SiTensorflow className="text-5xl text-orange-500" />, name: 'TensorFlow' },
+    { icon: <SiPytorch className="text-5xl text-red-600" />, name: 'PyTorch' },
+    { icon: <SiKeras className="text-5xl text-red-500" />, name: 'Keras' },
+    { icon: <SiScikitlearn className="text-5xl text-orange-400" />, name: 'Scikit-Learn' },
   ];
 
   return (
