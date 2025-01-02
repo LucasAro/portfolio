@@ -22,7 +22,9 @@ function Sobre() {
     { icon: <FaMicrochip className="text-5xl text-green-500" />, name: 'Arduino' },
     { icon: <SiTypescript className="text-5xl text-blue-500" />, name: 'TypeScript' },
     { icon: <SiTailwindcss className="text-5xl text-teal-500" />, name: 'Tailwind CSS' },
-    { icon: <SiSocketdotio className="text-5xl text-gray-600" />, name: 'WebSockets' }
+    { icon: <SiSocketdotio className="text-5xl text-gray-600" />, name: 'WebSockets' },
+    { icon: <FaShieldAlt className="text-5xl text-red-500" />, name: 'Machine Learning' },
+    { icon: <FaShieldAlt className="text-5xl text-red-500" />, name: 'Visão Computacional' },
   ];
 
   return (
