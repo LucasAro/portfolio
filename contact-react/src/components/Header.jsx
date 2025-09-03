@@ -25,7 +25,7 @@ function Header({ scrollToSection }) {
 						onClick={() => scrollToSection('#projetos')}
 						className="hover:text-blue-600 font-bold text-blue-600 transition transform hover:scale-105 duration-200"
 					>
-						Projetos
+						Projetoss
 					</button>
 					<button
 						onClick={() => scrollToSection('#contato')}
