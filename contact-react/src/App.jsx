@@ -22,41 +22,27 @@ function App()
 		setPopupContent( content || { title: '', description: '' } );
 	};
 
-	const handleFormSubmit = async (e) => {
+	const handleFormSubmit = (e) => {
 		e.preventDefault();
-		setIsLoading(true); // Ativa o estado de carregamento
+		setIsLoading(true);
 
-		try {
-			const response = await fetch('https://contact-api2-frosty-sunset-7890.fly.dev/messages', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(formData),
-			});
+		// Criar link mailto com os dados do formulário
+		const subject = `Contato de ${formData.name} - Portfolio`;
+		const body = `Nome: ${formData.name}%0AEmail: ${formData.email}%0A%0AMensagem:%0A${formData.message}`;
+		const mailtoLink = `mailto:lucasarodrigues@aol.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+		
+		// Abrir cliente de email
+		window.location.href = mailtoLink;
 
-			if (response.ok) {
-				setPopupContent({
-					title: 'Mensagem Enviada!',
-					description: `Obrigado pelo contato, ${formData.name}! Sua mensagem foi recebida.`,
-				});
-			} else {
-				setPopupContent({
-					title: 'Erro ao Enviar',
-					description: 'Ocorreu um erro ao enviar sua mensagem. Tente novamente mais tarde.',
-				});
-			}
-		} catch (error) {
-			console.error('Erro:', error);
-			setPopupContent({
-				title: 'Erro ao Enviar',
-				description: 'Erro ao enviar a mensagem. Tente novamente mais tarde.',
-			});
-		}
+		// Mostrar popup de sucesso
+		setPopupContent({
+			title: 'Email Criado!',
+			description: `Seu cliente de email foi aberto, ${formData.name}! Apenas clique em enviar.`,
+		});
 
-		setShowPopup(true); // Mostrar o popup com o resultado do envio
-		setFormData({ name: '', email: '', message: '' }); // Limpar o formulário
-		setIsLoading(false); // Desativa o estado de carregamento
+		setShowPopup(true);
+		setFormData({ name: '', email: '', message: '' });
+		setIsLoading(false);
 	};
 
 	const handleInputChange = ( e ) =>

@@ -1,42 +1,88 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.border-gradient::before {
-  content: "";
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  background: linear-gradient(90deg, #007bff, #00d4ff);
-  z-index: -1;
-  border-radius: 8px;
+
+/* Y2K Retro Styling */
+body {
+  background: #000080;
+  background-image: 
+    radial-gradient(circle at 25% 25%, #00ff00 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, #ff00ff 1px, transparent 1px);
+  background-size: 50px 50px;
+  font-family: 'Courier New', monospace;
+  color: #00cc00;
+  overflow-x: hidden;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.retro-border {
+  border: 4px solid #00cc00;
+  border-style: ridge;
+  background: #000040;
 }
 
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.retro-button {
+  background: linear-gradient(145deg, #0066cc, #003399);
+  border: 3px outset #0099ff;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: 'Arial', sans-serif;
 }
 
-.animate-fadeIn {
-  animation: fadeIn 1s ease-in-out forwards;
+.retro-button:hover {
+  background: linear-gradient(145deg, #0099ff, #0066cc);
+  border: 3px inset #0099ff;
 }
 
-.animate-slideUp {
-  animation: slideUp 0.8s ease-out forwards;
+.retro-text-glow {
+  text-shadow: 0 0 10px #00cc00, 0 0 20px #00cc00, 0 0 30px #00cc00;
+}
+
+.retro-header {
+  background: #000080;
+  border-bottom: 4px solid #00cc00;
+  box-shadow: 0 4px 0 #ff00ff;
+}
+
+.matrix-bg {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 204, 0, 0.05) 2px,
+    rgba(0, 204, 0, 0.05) 4px
+  );
+}
+
+.blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.retro-card {
+  background: #001122;
+  border: 3px solid #00cc00;
+  border-radius: 0;
+  box-shadow: 
+    4px 4px 0 #006600,
+    8px 8px 0 #003300;
+}
+
+.retro-hero {
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00);
+  background-size: 400% 400%;
+  animation: gradient 3s ease infinite;
+  border: 5px solid #ffffff;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

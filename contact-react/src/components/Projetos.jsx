@@ -1,37 +1,104 @@
 import React from 'react';
-import { FaGithub } from 'react-icons/fa';
-import ReactMarkdown from 'react-markdown';
 
 function Projetos( { projects, togglePopup } )
 {
+	const featuredProjects = [
+		{
+			title: "Sistema de IA para TVs Corporativas",
+			description: "Sistema interativo com reconhecimento de gestos usando Python, OpenCV e TensorFlow. Coleta feedbacks gestuais e gera insights analíticos.",
+			tech: ["Python", "TensorFlow", "OpenCV", "MediaPipe"],
+			year: "2024",
+			repository: "https://github.com/lucasaro"
+		},
+		{
+			title: "Plataforma E-commerce Laravel + Vue",
+			description: "Sistema completo de e-commerce com painel administrativo, gestão de produtos e integração com gateways de pagamento.",
+			tech: ["Laravel", "Vue.js", "MySQL", "Docker"],
+			year: "2024",
+			repository: "https://github.com/lucasaro"
+		},
+		{
+			title: "Dashboard de Monitoramento em Tempo Real",
+			description: "Sistema de monitoramento com WebSockets, notificações push e visualização de dados em tempo real.",
+			tech: ["Node.js", "WebSockets", "React", "MongoDB"],
+			year: "2023",
+			repository: "https://github.com/lucasaro"
+		}
+	];
+
 	return (
-		<section id="projetos" className="container w-[90%] mx-auto my-8">
-			<h2 className="text-3xl font-bold mb-4 text-blue-600">Projetos</h2>
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-				{projects.map( ( project, index ) => (
-					<div
-						key={index}
-						className="bg-white p-6 rounded-lg shadow-md border-2 border-blue-500 cursor-pointer transition transform hover:scale-105 hover:shadow-lg"
-						onClick={() => togglePopup( project )}
-					>
-						<h3 className="text-xl font-bold mb-2 text-blue-600">{project.title}</h3>
-						<p>{project.description.substring( 0, 60 )}...</p>
-						{project.repository && (
-							<p className='hover:text-blue-600 text-blue-500 text-xl mt-5'>
-								<a
-									href={project.repository}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center no-underline"
-								>
-									<FaGithub size={20} className="mr-1" />
-									Repositório do Projeto
-								</a>
-							</p>
-						)}
-					</div>
-				) )}
+		<section id="projetos" className="retro-card mx-4 my-8 p-6">
+			<h2 className="text-2xl font-bold mb-4 retro-text-glow blink">» PROJECTS.EXE</h2>
+			
+			<div className="matrix-bg p-4 mb-6">
+				<p className="text-green-600 mb-2">
+					&gt; Loading featured projects...
+				</p>
+				<p className="text-green-600">
+					&gt; Displaying most relevant work samples.
+				</p>
 			</div>
+
+			{/* Featured Projects */}
+			<div className="space-y-6 mb-8">
+				{featuredProjects.map((project, index) => (
+					<div 
+						key={index} 
+						className="retro-border p-4 hover:bg-blue-900 hover:bg-opacity-20 transition-colors cursor-pointer"
+						onClick={() => togglePopup({
+							title: project.title,
+							description: project.description,
+							repository: project.repository
+						})}
+					>
+						<div className="flex justify-between items-start mb-3">
+							<h3 className="text-lg font-bold text-yellow-400 font-mono">
+								{project.title}
+							</h3>
+							<span className="text-cyan-400 font-mono text-sm">
+								[{project.year}]
+							</span>
+						</div>
+						
+						<p className="text-green-600 mb-3 leading-relaxed">
+							{project.description}
+						</p>
+						
+						<div className="flex flex-wrap gap-2">
+							{project.tech.map((tech, techIndex) => (
+								<span key={techIndex} className="bg-blue-800 text-cyan-400 px-2 py-1 text-xs font-mono border border-cyan-400">
+									{tech}
+								</span>
+							))}
+						</div>
+					</div>
+				))}
+			</div>
+
+			{/* GitHub Projects */}
+			{projects.length > 0 && (
+				<>
+					<div className="retro-border p-3 mb-4">
+						<h3 className="text-lg font-bold text-cyan-400 font-mono">REPOSITÓRIOS_GITHUB.DIR:</h3>
+					</div>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+						{projects.slice(0, 6).map((project, index) => (
+							<div
+								key={index}
+								className="retro-card p-4 cursor-pointer hover:bg-blue-900 hover:bg-opacity-30 transition-colors"
+								onClick={() => togglePopup(project)}
+							>
+								<h4 className="text-yellow-400 font-mono mb-2">
+									&gt; {project.title}
+								</h4>
+								<p className="text-green-600 text-sm">
+									{project.description ? project.description.substring(0, 80) + '...' : 'Repositório GitHub'}
+								</p>
+							</div>
+						))}
+					</div>
+				</>
+			)}
 		</section>
 	);
 }

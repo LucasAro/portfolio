@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
 
 function Header({ scrollToSection }) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,46 +8,47 @@ function Header({ scrollToSection }) {
 	};
 
 	return (
-		<header className="bg-white text-gray-800 shadow-md fixed w-full top-0 left-0 z-50 border-b-2 border-blue-500">
+		<header className="retro-header fixed w-full top-0 left-0 z-50 text-white">
 			<div className="container mx-auto flex justify-between items-center p-4">
-				<h1 className="text-xl md:text-2xl font-bold text-blue-600">Lucas Rodrigues</h1>
+				<h1 className="text-xl md:text-2xl font-bold retro-text-glow blink">
+					LUCAS_RODRIGUES.EXE
+				</h1>
 
 				{/* Desktop Navigation */}
-				<nav className="hidden md:flex space-x-4">
+				<nav className="hidden md:flex space-x-6">
 					<button
 						onClick={() => scrollToSection('#sobre')}
-						className="hover:text-blue-600 font-bold text-blue-600 transition transform hover:scale-105 duration-200"
+						className="retro-button"
 					>
-						Sobre Mim
+						ABOUT
 					</button>
 					<button
 						onClick={() => scrollToSection('#projetos')}
-						className="hover:text-blue-600 font-bold text-blue-600 transition transform hover:scale-105 duration-200"
+						className="retro-button"
 					>
-						Projetoss
+						PROJECTS
 					</button>
 					<button
 						onClick={() => scrollToSection('#contato')}
-						className="hover:text-blue-600 font-bold text-blue-600 transition transform hover:scale-105 duration-200"
+						className="retro-button"
 					>
-						Contato
+						CONTACT
 					</button>
 				</nav>
 
 				{/* Mobile Menu Icon */}
 				<div className="md:hidden">
-					<button onClick={toggleMenu} className="focus:outline-none text-blue-600">
-						<FaBars size={20} />
+					<button onClick={toggleMenu} className="retro-button">
+						{isMenuOpen ? '✕' : '≡'}
 					</button>
 				</div>
 			</div>
 
 			{/* Mobile Navigation */}
 			{isMenuOpen && (
-				<div className="md:hidden bg-white fixed top-0 left-0 w-full h-screen flex flex-col items-center justify-center space-y-6 p-4">
-					{/* Close Button */}
-					<button onClick={toggleMenu} className="absolute top-4 right-4 focus:outline-none text-blue-600">
-						<FaTimes size={24} />
+				<div className="md:hidden retro-header fixed top-0 left-0 w-full h-screen flex flex-col items-center justify-center space-y-8">
+					<button onClick={toggleMenu} className="absolute top-4 right-4 retro-button">
+						✕
 					</button>
 
 					<button
@@ -56,27 +56,27 @@ function Header({ scrollToSection }) {
 							toggleMenu();
 							scrollToSection('#sobre');
 						}}
-						className="text-lg  text-blue-600 hover:scale-105 transition transform duration-200"
+						className="retro-button text-lg"
 					>
-						Sobre Mim
+						ABOUT
 					</button>
 					<button
 						onClick={() => {
 							toggleMenu();
 							scrollToSection('#projetos');
 						}}
-						className="text-lg  text-blue-600 hover:scale-105 transition transform duration-200"
+						className="retro-button text-lg"
 					>
-						Projetos
+						PROJECTS
 					</button>
 					<button
 						onClick={() => {
 							toggleMenu();
 							scrollToSection('#contato');
 						}}
-						className="text-lg  text-blue-600 hover:scale-105 transition transform duration-200"
+						className="retro-button text-lg"
 					>
-						Contato
+						CONTACT
 					</button>
 				</div>
 			)}
