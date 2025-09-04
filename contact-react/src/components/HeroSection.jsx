@@ -19,15 +19,15 @@ function HeroSection({ scrollToSection }) {
   return (
     <section id="hero" className="retro-hero mx-4 my-24 p-12 text-center text-black">
       <div className="max-w-4xl mx-auto">
-        <div className="mb-8">
-          <pre className="text-2xl md:text-4xl font-bold blink">
+        <div className="mb-8 overflow-x-auto">
+          <pre className="text-xs sm:text-sm md:text-2xl lg:text-4xl font-bold blink text-center whitespace-pre">
 {`
-  ██╗     ██╗   ██╗ ██████╗ █████╗ ███████╗
-  ██║     ██║   ██║██╔════╝██╔══██╗██╔════╝
-  ██║     ██║   ██║██║     ███████║███████╗
-  ██║     ██║   ██║██║     ██╔══██║╚════██║
-  ███████╗╚██████╔╝╚██████╗██║  ██║███████║
-  ╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚══════╝
+██╗     ██╗   ██╗ ██████╗ █████╗ ███████╗
+██║     ██║   ██║██╔════╝██╔══██╗██╔════╝
+██║     ██║   ██║██║     ███████║███████╗
+██║     ██║   ██║██║     ██╔══██║╚════██║
+███████╗╚██████╔╝╚██████╗██║  ██║███████║
+╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚══════╝
 `}
           </pre>
         </div>
